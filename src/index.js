@@ -1,22 +1,22 @@
 import './style.css';
 
 const tasks = [
-    {
-        index: 2,
-        description: 'This is the description of the first task',
-        completed: false,
-    },
-    {
-        index: 1,
-        description: 'This is the description of second task',
-        completed: true,
-    },
-    {
-        index: 3,
-        description: 'This is the description of third task',
-        completed: false,
-    },
-]
+  {
+    index: 2,
+    description: 'This is the description of the first task',
+    completed: false,
+  },
+  {
+    index: 1,
+    description: 'This is the description of second task',
+    completed: true,
+  },
+  {
+    index: 3,
+    description: 'This is the description of third task',
+    completed: false,
+  },
+];
 
 const appHeader = `
 <li class="appHeader">
@@ -32,12 +32,12 @@ const input = `
 `;
 
 const todoList = tasks
-.sort((a, b) => (a.index - b.index))
-.map( task =>`
+  .sort((a, b) => (a.index - b.index))
+  .map((task) => `
     <li> 
         <p>
             <span>
-                <input type="checkbox"${task.completed ? "checked" : ""} />
+                <input type="checkbox"${task.completed ? 'checked' : ''} />
             </span>
             <span>
                 ${task.description} 
@@ -55,10 +55,10 @@ const footer = `
 </li>
 `;
 
-const minimalist = document.getElementById("minimalist");
+const minimalist = document.getElementById('minimalist');
 minimalist.innerHTML = `
     ${appHeader}
     ${input}
-    ${todoList.join("")}
+    ${todoList.join('')}
     ${footer}
 `;
