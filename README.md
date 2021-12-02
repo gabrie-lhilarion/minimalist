@@ -7,6 +7,9 @@ In this project, I build a simple HTML list of To Do tasks.
 - Javascript 
 - WebPack
 
+## Desktop Preview
+![screenshot](./screenshot.png)
+
 
 ## Getting Started
 
@@ -33,7 +36,8 @@ git clone https://github.com/gabrie-lhilarion/minimalist.git
 
 ## Online View
 
-[Here]( https://lucas-masaba.github.io/awesome_books/) is a link to the online view of my website
+
+[Here](https://gabrie-lhilarion.github.io/minimalist/dist/) is a link to the online view of my website
 
 ## Show your support
 
