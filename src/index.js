@@ -2,19 +2,19 @@ import './style.css';
 
 const tasks = [
     {
+        index: 2,
         description: 'This is the description of the first task',
         completed: false,
-        index: 2,
     },
     {
+        index: 1,
         description: 'This is the description of second task',
         completed: true,
-        index: 1,
     },
     {
+        index: 3,
         description: 'This is the description of third task',
         completed: false,
-        index: 3,
     },
 ]
 
