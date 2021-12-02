@@ -1,7 +1,16 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
+  devServer: {
+    static: './dist',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Minimalist',
+    }),
+  ],
   mode: 'development',
   output: {
     filename: 'bundle.js',
