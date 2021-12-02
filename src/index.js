@@ -36,16 +36,29 @@ const todoList = tasks
 .map( task =>`
     <li> 
         <p>
-            <span><input type="checkbox"${task.completed ? "checked" : ""} /> </span>
-            <span>${task.index} ${task.description} </span>
+            <span>
+                <input type="checkbox"${task.completed ? "checked" : ""} />
+            </span>
+            <span>
+                ${task.description} 
+            </span>
         </p>
         <span class="drag-around">&#8942</span>
     </li>
 `);
+
+const footer = `
+<li id="clear-all">
+    <div>
+        Clear all completed
+    </div>
+</li>
+`;
 
 const minimalist = document.getElementById("minimalist");
 minimalist.innerHTML = `
     ${appHeader}
     ${input}
     ${todoList.join("")}
+    ${footer}
 `;

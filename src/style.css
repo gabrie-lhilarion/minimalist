@@ -1,9 +1,11 @@
 #minimalist {
+    border-top: 1.5px solid #f1f1f1;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     width: 80%;
     max-width: 500px;
-    margin: auto;
+    margin: 30px auto;
     padding: 0;
-    box-shadow: 0px 4px 2px 2px #f1f1f1;
+    box-shadow: 1px 4px 2px 3px #f1f1f1;
 }
 
 #minimalist li {
@@ -41,5 +43,16 @@ margin: 0;
     padding: 0;
     margin: 0;
     font-size: medium;
+}
+
+.drag-around {
+    cursor: all-scroll;
+}
+
+#clear-all div {
+    color: #ccc;
+    width: 100%;
+    text-align: center;
+    align-items: center;
 }
 
