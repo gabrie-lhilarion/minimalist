@@ -26,7 +26,7 @@ const appHeader = `
 
 const input = `
 <li>
-    <input type="text" placeholder="Add to your list...">
+    <label for="New task"><input type="text" placeholder="Add to your list..."></label>
     <span class="save-task">&crarr;</span>
 </li>
 `;
@@ -37,11 +37,12 @@ const todoList = tasks
     <li> 
         <p>
             <span>
-                <input type="checkbox"${task.completed ? 'checked' : ''} />
+                  <label for="task list"> 
+                  <input type="checkbox"${task.completed ? 'checked' : ''} />
+                    ${task.description} 
+                  </label>
             </span>
-            <span>
-                ${task.description} 
-            </span>
+            
         </p>
         <span class="drag-around">&#8942</span>
     </li>
