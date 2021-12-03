@@ -110,13 +110,33 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/data.js":
+/*!*********************!*\
+  !*** ./src/data.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass Data {\n  static get allTasks() {\n    const tasks = [\n      {\n        index: 1,\n        description: 'This is the description of the first task',\n        completed: false,\n      },\n      {\n        index: 0,\n        description: 'This is the description of second task',\n        completed: true,\n      },\n      {\n        index: 2,\n        description: 'This is the description of third task',\n        completed: false,\n      },\n    ];\n\n    if (localStorage.getItem('mytodoTasks')) {\n      return JSON.parse(localStorage.getItem('mytodoTasks'));\n    }\n    localStorage.setItem('mytodoTasks', JSON.stringify(tasks));\n    return tasks;\n  }\n\n  static updateData(status, index) {\n    const { allTasks: storedData } = Data;\n    storedData[Number(index)].completed = status;\n\n    localStorage.setItem('mytodoTasks', JSON.stringify(storedData));\n  }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Data);\n\n//# sourceURL=webpack://minimalist/./src/data.js?");
+
+/***/ }),
+
+/***/ "./src/handlers.js":
+/*!*************************!*\
+  !*** ./src/handlers.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _data_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data.js */ \"./src/data.js\");\n\n\nclass Handlers {\n  static handleCheckBoxChange(e) {\n    if (e.target.tagName === 'INPUT') {\n        console.log(e.target.checked)\n      const { updateData } = _data_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\n      const status = e.target.checked; \n      const index = e.target.getAttribute('data-index');\n\n      updateData(status, index);\n    }\n  }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Handlers);\n\n\n\n//# sourceURL=webpack://minimalist/./src/handlers.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\nconst tasks = [\n  {\n    index: 2,\n    description: 'This is the description of the first task',\n    completed: false,\n  },\n  {\n    index: 1,\n    description: 'This is the description of second task',\n    completed: true,\n  },\n  {\n    index: 3,\n    description: 'This is the description of third task',\n    completed: false,\n  },\n];\n\nconst appHeader = `\n<li class=\"appHeader\">\n    <h1>Today's To Do</h1>\n    <span>&#8634</span>\n</li>`;\n\nconst input = `\n<li>\n    <label for=\"New task\"><input type=\"text\" placeholder=\"Add to your list...\"></label>\n    <span class=\"save-task\">&crarr;</span>\n</li>\n`;\n\nconst todoList = tasks\n  .sort((a, b) => (a.index - b.index))\n  .map((task) => `\n    <li> \n        <p>\n            <span>\n                  <label for=\"task list\"> \n                  <input type=\"checkbox\"${task.completed ? 'checked' : ''} />\n                    ${task.description} \n                  </label>\n            </span>\n            \n        </p>\n        <span class=\"drag-around\">&#8942</span>\n    </li>\n`);\n\nconst footer = `\n<li id=\"clear-all\">\n    <div>\n        Clear all completed\n    </div>\n</li>\n`;\n\nconst minimalist = document.getElementById('minimalist');\nminimalist.innerHTML = `\n    ${appHeader}\n    ${input}\n    ${todoList.join('')}\n    ${footer}\n`;\n\n//# sourceURL=webpack://minimalist/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _data_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data.js */ \"./src/data.js\");\n/* harmony import */ var _handlers_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./handlers.js */ \"./src/handlers.js\");\n\n\n\n\nconst { allTasks: tasks } = _data_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"];\nconst { handleCheckBoxChange } = _handlers_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"];\n\nconst appHeader = `\n<li class=\"appHeader\">\n    <h1>Today's To Do</h1>\n    <span>&#8634</span>\n</li>`;\n\nconst input = `\n<li>\n    <label for=\"New task\"><input type=\"text\" placeholder=\"Add to your list...\"></label>\n    <span class=\"save-task\">&crarr;</span>\n</li>\n`;\n\nconst todoList = tasks\n  .sort((a, b) => (a.index - b.index))\n  .map((task, index) => `\n    <li> \n        <p>\n            <span>\n                  <label for=\"task list\"> \n                  <input data-index=\"${index}\" type=\"checkbox\"${task.completed ? 'checked' : ''} />\n                   ${task.description} \n                  </label>\n            </span>\n            \n        </p>\n        <span class=\"drag-around\">&#8942</span>\n    </li>\n`);\n\nconst footer = `\n<li id=\"clear-all\">\n    <div>\n        Clear all completed\n    </div>\n</li>\n`;\n\nconst minimalist = document.getElementById('minimalist');\nminimalist.innerHTML = `\n    ${appHeader}\n    ${input}\n    ${todoList.join('')}\n    ${footer}\n`;\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  const checkbox = document.querySelectorAll('#minimalist li input');\n  checkbox.forEach((box) => box.addEventListener('click', (e) => handleCheckBoxChange(e)));\n});\n\n//# sourceURL=webpack://minimalist/./src/index.js?");
 
 /***/ })
 

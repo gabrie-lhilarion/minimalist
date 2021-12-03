@@ -4,7 +4,7 @@ class Handlers {
   static handleCheckBoxChange(e) {
     if (e.target.tagName === 'INPUT') {
       const { updateData } = Data;
-      const status = e.target.checked;
+      const status = e.target.checked; 
       const index = e.target.getAttribute('data-index');
 
       updateData(status, index);
@@ -13,3 +13,4 @@ class Handlers {
 }
 
 export default Handlers;
+
