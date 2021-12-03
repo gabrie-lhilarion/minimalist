@@ -1,22 +1,9 @@
 import './style.css';
+import Data from "./data";
+import Handlers from "./handlers";
 
-const tasks = [
-  {
-    index: 2,
-    description: 'This is the description of the first task',
-    completed: false,
-  },
-  {
-    index: 1,
-    description: 'This is the description of second task',
-    completed: true,
-  },
-  {
-    index: 3,
-    description: 'This is the description of third task',
-    completed: false,
-  },
-];
+const { allTasks:tasks } = Data;
+const { handleCheckBoxChange } = Handlers;
 
 const appHeader = `
 <li class="appHeader">
@@ -33,13 +20,13 @@ const input = `
 
 const todoList = tasks
   .sort((a, b) => (a.index - b.index))
-  .map((task) => `
+  .map((task, index) => `
     <li> 
         <p>
             <span>
                   <label for="task list"> 
-                  <input type="checkbox"${task.completed ? 'checked' : ''} />
-                    ${task.description} 
+                  <input data-index="${index}" type="checkbox"${task.completed ? 'checked' : ''} />
+                   ${task.description} 
                   </label>
             </span>
             
@@ -63,3 +50,10 @@ minimalist.innerHTML = `
     ${todoList.join('')}
     ${footer}
 `;
+
+
+
+document.addEventListener("DOMContentLoaded",  () => {
+  const checkbox = document.querySelectorAll("#minimalist li input");
+  checkbox.forEach( box => box.addEventListener('click', (e) => handleCheckBoxChange(e)) );
+})
