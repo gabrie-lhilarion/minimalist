@@ -1,8 +1,8 @@
 import './style.css';
-import Data from "./data";
-import Handlers from "./handlers";
+import Data from './data.js';
+import Handlers from './handlers.js';
 
-const { allTasks:tasks } = Data;
+const { allTasks: tasks } = Data;
 const { handleCheckBoxChange } = Handlers;
 
 const appHeader = `
@@ -51,9 +51,7 @@ minimalist.innerHTML = `
     ${footer}
 `;
 
-
-
-document.addEventListener("DOMContentLoaded",  () => {
-  const checkbox = document.querySelectorAll("#minimalist li input");
-  checkbox.forEach( box => box.addEventListener('click', (e) => handleCheckBoxChange(e)) );
-})
+document.addEventListener('DOMContentLoaded', () => {
+  const checkbox = document.querySelectorAll('#minimalist li input');
+  checkbox.forEach((box) => box.addEventListener('click', (e) => handleCheckBoxChange(e)));
+});
