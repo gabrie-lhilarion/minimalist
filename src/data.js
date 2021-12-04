@@ -1,12 +1,9 @@
 class Data {
-
-
   static create(description, index, completed) {
-        return { description, index, completed }
+    return { description, index, completed };
   }
 
   static get allTasks() {
-
     if (localStorage.getItem('mytodoTasks')) {
       return JSON.parse(localStorage.getItem('mytodoTasks'));
     }

@@ -2,7 +2,7 @@ import Data from './data.js';
 
 class Handlers {
   static handleCheckBoxChange(e) {
-    if (e.target.className === 'status' ) {
+    if (e.target.className === 'status') {
       const { updateData } = Data;
       const status = e.target.checked;
       const index = e.target.getAttribute('data-index');
@@ -12,43 +12,41 @@ class Handlers {
   }
 
   static handleAddTask(e, completed) {
-      const { allTasks, create } = Data;
-      const currentIndex = document.querySelectorAll(".task-item").length + 1;
-      const description = e.target.previousElementSibling.value;
-      const newTask = create(description, currentIndex, completed)
-      const afterAddNew = [...allTasks, newTask]
-      afterAddNew.forEach( (item, index) => item.index = index )
-      
-      localStorage.setItem("mytodoTasks", JSON.stringify(afterAddNew))
-     
-      const { appendTask } = Handlers;
-      appendTask(newTask);
+    const { allTasks, create } = Data;
+    const currentIndex = document.querySelectorAll('.task-item').length + 1;
+    const description = e.target.previousElementSibling.value;
+    const newTask = create(description, currentIndex, completed);
+    const afterAddNew = [...allTasks, newTask];
+    afterAddNew.forEach((item, index) => {item.index = index});
+
+    localStorage.setItem('mytodoTasks', JSON.stringify(afterAddNew));
+
+    const { appendTask } = Handlers;
+    appendTask(newTask);
   }
 
   static removeTask(e) {
-      if (e.target.className === "remove-item") {
-        const index = e.target.getAttribute("data-index");
-        
-        const { allTasks } = Data;
+    if (e.target.className === 'remove-item') {
+      const index = e.target.getAttribute('data-index');
 
-        const {  renderList } = Handlers
+      const { allTasks } = Data;
 
-        allTasks.splice(index, 1);
-        allTasks.forEach( (item, index) => item.index = index )
-        localStorage.setItem("mytodoTasks", JSON.stringify(allTasks))
+      const { renderList } = Handlers;
 
-        const existingLists = document.querySelectorAll(".task-item");
-        existingLists.forEach( item => item.remove() );
+      allTasks.splice(index, 1);
+      allTasks.forEach((item, index) => {item.index = index});
+      localStorage.setItem('mytodoTasks', JSON.stringify(allTasks));
 
-        renderList(allTasks);
-          
-      }
-     
+      const existingLists = document.querySelectorAll('.task-item');
+      existingLists.forEach((item) => item.remove());
+
+      renderList(allTasks);
+    }
   }
 
   static appendTask(task) {
     const listItem = `
-    <li class="task-item">
+    <li class="task-item" title="Double click description to edit">
         <p>
             <span>
                 <label for="task list"> 
@@ -64,16 +62,15 @@ class Handlers {
     </li>
     `;
 
-    const clearAll = document.getElementById("clear-all");
-    clearAll.insertAdjacentHTML("beforebegin", listItem)
+    const clearAll = document.getElementById('clear-all');
+    clearAll.insertAdjacentHTML('beforebegin', listItem);
   }
 
   static renderList(list) {
-    
-    const clearAll = document.getElementById("clear-all");
-    list.forEach( (item, index) => item.index = index )
+    const clearAll = document.getElementById('clear-all');
+    list.forEach((item, index) => {item.index = index});
     const listItems = list.map((task, index) => `
-        <li class="task-item"> 
+        <li class="task-item" title="Double click description to edit"> 
             <p>
                 <span>
                     <label for="task list"> 
@@ -90,40 +87,56 @@ class Handlers {
         </li>
         `);
 
-        clearAll.insertAdjacentHTML("beforebegin", listItems.join(""))
-    }
+    clearAll.insertAdjacentHTML('beforebegin', listItems.join(''));
+  }
 
-    static clearCompleted() {
-        const { allTasks } = Data;
-        const afterRemovedCompleted = allTasks.filter( task => task.completed !== true );
-         
-        afterRemovedCompleted.forEach( (item, index) => item.index = index )
+  static clearCompleted() {
+    const { allTasks } = Data;
+    const afterRemovedCompleted = allTasks.filter((task) => task.completed !== true);
 
-        localStorage.setItem("mytodoTasks", JSON.stringify( afterRemovedCompleted ));
+    afterRemovedCompleted.forEach((item, index) => {item.index = index});
 
-        const existingLists = document.querySelectorAll(".task-item");
-        existingLists.forEach( item => item.remove() );
-        
-        const {  renderList } = Handlers;
-        renderList(afterRemovedCompleted);
-    }
+    localStorage.setItem('mytodoTasks', JSON.stringify(afterRemovedCompleted));
 
-    static updateTask(e) {
+    const existingLists = document.querySelectorAll('.task-item');
+    existingLists.forEach((item) => item.remove());
 
-    }
+    const { renderList } = Handlers;
+    renderList(afterRemovedCompleted);
+  }
 
-    static createUpdateHandle(e) {
-        if(e.target.className === "description") {
-            console.log( e.target.textContent)
-            const initialText = e.target.textContent;
-            e.target.innerHTML = `
+  static createUpdateHandle(e) {
+    if (e.target.className === 'description') {
+      const initialText = e.target.textContent;
+      e.target.innerHTML = `
             <p>
                 <input type="text" placeholder="${initialText}"/> <br/>
-                <button>Update</button>  <button>Cancel</button>
+                <button class="update">Update</button>  
+                <button  data-initialtext="${initialText}" class="cancel">Cancel</button>
             </p>
-            `
-        }
+            `;
     }
+
+    if (e.target.className === 'cancel') {
+      e.target.parentElement.parentElement.textContent = e.target.getAttribute('data-initialtext');
+    }
+
+    if (e.target.className === 'update') {
+      const taskIndex = e.target.parentElement
+        .parentElement.previousElementSibling
+        .getAttribute('data-index');
+
+      const { allTasks } = Data;
+      const curretInput = e.target.parentElement.querySelector('input');
+
+      if (curretInput.value.trim().length > 2) {
+        allTasks[taskIndex].description = curretInput.value;
+
+        localStorage.setItem('mytodoTasks', JSON.stringify(allTasks));
+        e.target.parentElement.parentElement.textContent = curretInput.value;
+      }
+    }
+  }
 }
 
 export default Handlers;

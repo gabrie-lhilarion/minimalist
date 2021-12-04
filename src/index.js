@@ -3,7 +3,13 @@ import Data from './data.js';
 import Handlers from './handlers.js';
 
 const { allTasks: tasks } = Data;
-const { handleCheckBoxChange, handleAddTask, removeTask, clearCompleted, createUpdateHandle, updateTask } = Handlers;
+const {
+  handleCheckBoxChange,
+  handleAddTask,
+  removeTask,
+  clearCompleted,
+  createUpdateHandle,
+} = Handlers;
 
 const appHeader = `
 <li class="appHeader">
@@ -22,7 +28,7 @@ const input = `
 
 const todoList = tasks
   .map((task, index) => `
-    <li class="task-item"> 
+    <li class="task-item" title="Double click description to edit"> 
         <p>
             <span>
                   <label for="task list"> 
@@ -57,12 +63,12 @@ minimalist.innerHTML = `
 
 document.addEventListener('DOMContentLoaded', () => {
   minimalist.addEventListener('change', (e) => handleCheckBoxChange(e));
-  minimalist.addEventListener("click", (e) => removeTask(e))
-  minimalist.addEventListener("click", (e) => createUpdateHandle(e))
+  minimalist.addEventListener('click', (e) => removeTask(e));
+  minimalist.addEventListener('click', (e) => createUpdateHandle(e));
 
-  const saveTaskButton = document.querySelector(".save-task");
-  saveTaskButton.addEventListener("click", (e) => handleAddTask(e, false) );
+  const saveTaskButton = document.querySelector('.save-task');
+  saveTaskButton.addEventListener('click', (e) => handleAddTask(e, false));
 
-  const clearAll = document.getElementById("clear-all");
-  clearAll.addEventListener("click", () => clearCompleted());
+  const clearAll = document.getElementById('clear-all');
+  clearAll.addEventListener('click', () => clearCompleted());
 });
