@@ -17,7 +17,7 @@ class Handlers {
     const description = e.target.previousElementSibling.value;
     const newTask = create(description, currentIndex, completed);
     const afterAddNew = [...allTasks, newTask];
-    afterAddNew.forEach((item, index) => {item.index = index});
+    afterAddNew.forEach((item, index) => { item.index = index; });
 
     localStorage.setItem('mytodoTasks', JSON.stringify(afterAddNew));
 
@@ -34,7 +34,7 @@ class Handlers {
       const { renderList } = Handlers;
 
       allTasks.splice(index, 1);
-      allTasks.forEach((item, index) => {item.index = index});
+      allTasks.forEach((item, index) => { item.index = index; });
       localStorage.setItem('mytodoTasks', JSON.stringify(allTasks));
 
       const existingLists = document.querySelectorAll('.task-item');
@@ -68,7 +68,7 @@ class Handlers {
 
   static renderList(list) {
     const clearAll = document.getElementById('clear-all');
-    list.forEach((item, index) => {item.index = index});
+    list.forEach((item, index) => { item.index = index; });
     const listItems = list.map((task, index) => `
         <li class="task-item" title="Double click description to edit"> 
             <p>
@@ -94,7 +94,7 @@ class Handlers {
     const { allTasks } = Data;
     const afterRemovedCompleted = allTasks.filter((task) => task.completed !== true);
 
-    afterRemovedCompleted.forEach((item, index) => {item.index = index});
+    afterRemovedCompleted.forEach((item, index) => { item.index = index; });
 
     localStorage.setItem('mytodoTasks', JSON.stringify(afterRemovedCompleted));
 

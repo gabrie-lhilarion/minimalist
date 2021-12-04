@@ -17,7 +17,6 @@
   border-bottom: solid 1.5px #f1f1f1;
 }
 
-
 #minimalist li label {
   width: 85%;
 }
@@ -49,6 +48,12 @@
   border-radius: 50%;
   display: inline-block;
   cursor: pointer;
+}
+
+.description p {
+  background-color: blue;
+  width: 85%;
+  display: inline-block;
 }
 
 #minimalist li p {
@@ -95,18 +100,9 @@
   cursor: pointer;
 }
 
-
-.description p {
-  background-color: blue;
-  width: 85%;
-  display: inline-block;
-}
-
 .description p input {
   display: inline-block;
   background: bisque;
   width: 95%;
   margin-bottom: 4px;
-
 }
-
