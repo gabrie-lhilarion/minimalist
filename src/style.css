@@ -94,3 +94,19 @@
   background-color: brown;
   cursor: pointer;
 }
+
+
+.description p {
+  background-color: blue;
+  width: 85%;
+  display: inline-block;
+}
+
+.description p input {
+  display: inline-block;
+  background: bisque;
+  width: 95%;
+  margin-bottom: 4px;
+
+}
+

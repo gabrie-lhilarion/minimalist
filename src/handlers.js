@@ -53,7 +53,7 @@ class Handlers {
             <span>
                 <label for="task list"> 
                 <input class="status"  data-index="${task.index - 1}" type="checkbox" />
-                ${task.description} 
+                <span class="description">${task.description}  </span>
                 </label>
             </span>
         </p>
@@ -78,7 +78,7 @@ class Handlers {
                 <span>
                     <label for="task list"> 
                     <input  class="status"  data-index="${index}" type="checkbox"${task.completed ? 'checked' : ''} />
-                    ${task.description} 
+                        <span  class="description"> ${task.description} </span>
                     </label>
                 </span>
                 
@@ -106,6 +106,23 @@ class Handlers {
         
         const {  renderList } = Handlers;
         renderList(afterRemovedCompleted);
+    }
+
+    static updateTask(e) {
+
+    }
+
+    static createUpdateHandle(e) {
+        if(e.target.className === "description") {
+            console.log( e.target.textContent)
+            const initialText = e.target.textContent;
+            e.target.innerHTML = `
+            <p>
+                <input type="text" placeholder="${initialText}"/> <br/>
+                <button>Update</button>  <button>Cancel</button>
+            </p>
+            `
+        }
     }
 }
 
