@@ -6,29 +6,12 @@ class Data {
   }
 
   static get allTasks() {
-    const tasks = [
-      {
-        index: 2,
-        description: 'This is the description of the first task',
-        completed: false,
-      },
-      {
-        index: 1,
-        description: 'This is the description of second task',
-        completed: true,
-      },
-      {
-        index: 3,
-        description: 'This is the description of third task',
-        completed: false,
-      },
-    ];
 
     if (localStorage.getItem('mytodoTasks')) {
       return JSON.parse(localStorage.getItem('mytodoTasks'));
     }
-    localStorage.setItem('mytodoTasks', JSON.stringify(tasks));
-    return tasks;
+    localStorage.setItem('mytodoTasks', JSON.stringify([]));
+    return [];
   }
 
   static updateData(status, index) {

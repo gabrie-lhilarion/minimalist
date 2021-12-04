@@ -11,8 +11,9 @@ class Handlers {
     }
   }
 
-  static handleAddTask(e, currentIndex, completed) {
+  static handleAddTask(e, completed) {
       const { allTasks, create } = Data;
+      const currentIndex = document.querySelectorAll(".task-item").length + 1;
       const description = e.target.previousElementSibling.value;
       const newTask = create(description, currentIndex, completed)
       const afterAddNew = [...allTasks, newTask]
