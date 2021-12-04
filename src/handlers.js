@@ -24,6 +24,20 @@ class Handlers {
       appendTask(newTask);
   }
 
+  static removeTask(e) {
+      if (e.target.className === "remove-item") {
+          const index = e.target.getAttribute("data-index");
+           // remove from storage
+           const { allTasks } = Data;
+           allTasks.splice(index, 1);
+           localStorage.setItem("mytodoTasks", JSON.stringify(allTasks))
+           e.target.parentElement.parentElement.remove()
+           console.log(index);
+            // remove from UI
+      }
+     
+  }
+
   static appendTask(task) {
     const listItem = `
     <li class="task-item">
@@ -36,7 +50,7 @@ class Handlers {
             </span>
         </p>
         <p>
-            <i class="remove-item">&times</i>
+            <i  data-index="${task.index - 1}" class="remove-item">&times</i>
             <span class="drag-around">&#8942</span>
         </p>
     </li>

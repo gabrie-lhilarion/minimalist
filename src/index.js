@@ -3,7 +3,7 @@ import Data from './data.js';
 import Handlers from './handlers.js';
 
 const { allTasks: tasks } = Data;
-const { handleCheckBoxChange, handleAddTask } = Handlers;
+const { handleCheckBoxChange, handleAddTask, removeTask } = Handlers;
 
 const appHeader = `
 <li class="appHeader">
@@ -33,7 +33,7 @@ const todoList = tasks
             
         </p>
         <p>
-          <i class="remove-item">&times</i>
+          <i data-index="${index}" class="remove-item">&times</i>
           <span class="drag-around">&#8942</span>
         </p>
     </li>
@@ -57,6 +57,7 @@ minimalist.innerHTML = `
 
 document.addEventListener('DOMContentLoaded', () => {
   minimalist.addEventListener('change', (e) => handleCheckBoxChange(e));
+  minimalist.addEventListener("click", (e) => removeTask(e))
 
   const saveTaskButton = document.querySelector(".save-task");
   saveTaskButton.addEventListener("click", (e) => handleAddTask(e, false) )
