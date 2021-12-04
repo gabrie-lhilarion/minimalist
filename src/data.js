@@ -1,18 +1,24 @@
 class Data {
+
+
+  static create(description, index, completed) {
+        return { description, index, completed }
+  }
+
   static get allTasks() {
     const tasks = [
       {
-        index: 1,
+        index: 2,
         description: 'This is the description of the first task',
         completed: false,
       },
       {
-        index: 0,
+        index: 1,
         description: 'This is the description of second task',
         completed: true,
       },
       {
-        index: 2,
+        index: 3,
         description: 'This is the description of third task',
         completed: false,
       },

@@ -17,14 +17,38 @@
   border-bottom: solid 1.5px #f1f1f1;
 }
 
+
+#minimalist li label {
+  width: 85%;
+}
+
 #minimalist input[type=text] {
   font-family: cursive;
   border: none;
-  width: 85%;
+  width: 95%;
+  outline: none;
 }
 
 .save-task {
   color: #000;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.save-task:hover {
+  color: #fff;
+  background-color: green;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
 }
 
 #minimalist li p {
@@ -54,4 +78,19 @@
   width: 100%;
   text-align: center;
   align-items: center;
+}
+
+.remove-item {
+  font-size: small;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 3px;
+  color: #fcc;
+  background-color: brown;
+  cursor: pointer;
 }

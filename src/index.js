@@ -3,7 +3,7 @@ import Data from './data.js';
 import Handlers from './handlers.js';
 
 const { allTasks: tasks } = Data;
-const { handleCheckBoxChange } = Handlers;
+const { handleCheckBoxChange, handleAddTask } = Handlers;
 
 const appHeader = `
 <li class="appHeader">
@@ -13,7 +13,9 @@ const appHeader = `
 
 const input = `
 <li>
-    <label for="New task"><input type="text" placeholder="Add to your list..."></label>
+    
+    <input type="text" id="task-description" name="description" placeholder="Add to your list...">
+     
     <span class="save-task">&crarr;</span>
 </li>
 `;
@@ -21,7 +23,7 @@ const input = `
 const todoList = tasks
   .sort((a, b) => (a.index - b.index))
   .map((task, index) => `
-    <li> 
+    <li class="task-item"> 
         <p>
             <span>
                   <label for="task list"> 
@@ -31,7 +33,10 @@ const todoList = tasks
             </span>
             
         </p>
-        <span class="drag-around">&#8942</span>
+        <p>
+          <i class="remove-item">&times</i>
+          <span class="drag-around">&#8942</span>
+        </p>
     </li>
 `);
 
@@ -51,7 +56,15 @@ minimalist.innerHTML = `
     ${footer}
 `;
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const checkbox = document.querySelectorAll('#minimalist li input');
   checkbox.forEach((box) => box.addEventListener('click', (e) => handleCheckBoxChange(e)));
+
+  const saveTaskButton = document.querySelector(".save-task");
+  const currentIndex = document.querySelectorAll(".task-item").length + 1;
+  const taskDescription = document.getElementById("task-description")
+
+  saveTaskButton.addEventListener("click", (e) => handleAddTask(e, currentIndex, false) )
 });
