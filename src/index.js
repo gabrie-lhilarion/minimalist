@@ -19,7 +19,6 @@ const input = `
 `;
 
 const todoList = tasks
-  .sort((a, b) => (a.index - b.index))
   .map((task, index) => `
     <li> 
         <p>

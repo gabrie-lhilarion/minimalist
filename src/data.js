@@ -7,12 +7,12 @@ class Data {
         completed: false,
       },
       {
-        index: 0,
+        index: 2,
         description: 'This is the description of second task',
         completed: true,
       },
       {
-        index: 2,
+        index: 3,
         description: 'This is the description of third task',
         completed: false,
       },
