@@ -3,7 +3,7 @@ import Data from './data.js';
 import Handlers from './handlers.js';
 
 const { allTasks: tasks } = Data;
-const { handleCheckBoxChange, handleAddTask, removeTask } = Handlers;
+const { handleCheckBoxChange, handleAddTask, removeTask, clearCompleted } = Handlers;
 
 const appHeader = `
 <li class="appHeader">
@@ -26,7 +26,7 @@ const todoList = tasks
         <p>
             <span>
                   <label for="task list"> 
-                  <input data-index="${index}" type="checkbox"${task.completed ? 'checked' : ''} />
+                  <input class="status" data-index="${index}" type="checkbox"${task.completed ? 'checked' : ''} />
                    ${task.description} 
                   </label>
             </span>
@@ -60,5 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
   minimalist.addEventListener("click", (e) => removeTask(e))
 
   const saveTaskButton = document.querySelector(".save-task");
-  saveTaskButton.addEventListener("click", (e) => handleAddTask(e, false) )
+  saveTaskButton.addEventListener("click", (e) => handleAddTask(e, false) );
+
+  const clearAll = document.getElementById("clear-all");
+  clearAll.addEventListener("click", () => clearCompleted());
 });

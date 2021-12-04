@@ -2,7 +2,7 @@ import Data from './data.js';
 
 class Handlers {
   static handleCheckBoxChange(e) {
-    if (e.target.tagName === 'INPUT') {
+    if (e.target.className === 'status' ) {
       const { updateData } = Data;
       const status = e.target.checked;
       const index = e.target.getAttribute('data-index');
@@ -17,6 +17,7 @@ class Handlers {
       const description = e.target.previousElementSibling.value;
       const newTask = create(description, currentIndex, completed)
       const afterAddNew = [...allTasks, newTask]
+      afterAddNew.forEach( (item, index) => item.index = index )
       
       localStorage.setItem("mytodoTasks", JSON.stringify(afterAddNew))
      
@@ -26,14 +27,21 @@ class Handlers {
 
   static removeTask(e) {
       if (e.target.className === "remove-item") {
-          const index = e.target.getAttribute("data-index");
-           // remove from storage
-           const { allTasks } = Data;
-           allTasks.splice(index, 1);
-           localStorage.setItem("mytodoTasks", JSON.stringify(allTasks))
-           e.target.parentElement.parentElement.remove()
-           console.log(index);
-            // remove from UI
+        const index = e.target.getAttribute("data-index");
+        
+        const { allTasks } = Data;
+
+        const {  renderList } = Handlers
+
+        allTasks.splice(index, 1);
+        allTasks.forEach( (item, index) => item.index = index )
+        localStorage.setItem("mytodoTasks", JSON.stringify(allTasks))
+
+        const existingLists = document.querySelectorAll(".task-item");
+        existingLists.forEach( item => item.remove() );
+
+        renderList(allTasks);
+          
       }
      
   }
@@ -44,7 +52,7 @@ class Handlers {
         <p>
             <span>
                 <label for="task list"> 
-                <input data-index="${task.index - 1}" type="checkbox" />
+                <input class="status"  data-index="${task.index - 1}" type="checkbox" />
                 ${task.description} 
                 </label>
             </span>
@@ -59,6 +67,46 @@ class Handlers {
     const clearAll = document.getElementById("clear-all");
     clearAll.insertAdjacentHTML("beforebegin", listItem)
   }
+
+  static renderList(list) {
+    
+    const clearAll = document.getElementById("clear-all");
+    list.forEach( (item, index) => item.index = index )
+    const listItems = list.map((task, index) => `
+        <li class="task-item"> 
+            <p>
+                <span>
+                    <label for="task list"> 
+                    <input  class="status"  data-index="${index}" type="checkbox"${task.completed ? 'checked' : ''} />
+                    ${task.description} 
+                    </label>
+                </span>
+                
+            </p>
+            <p>
+            <i data-index="${index}" class="remove-item">&times</i>
+            <span class="drag-around">&#8942</span>
+            </p>
+        </li>
+        `);
+
+        clearAll.insertAdjacentHTML("beforebegin", listItems.join(""))
+    }
+
+    static clearCompleted() {
+        const { allTasks } = Data;
+        const afterRemovedCompleted = allTasks.filter( task => task.completed !== true );
+         
+        afterRemovedCompleted.forEach( (item, index) => item.index = index )
+
+        localStorage.setItem("mytodoTasks", JSON.stringify( afterRemovedCompleted ));
+
+        const existingLists = document.querySelectorAll(".task-item");
+        existingLists.forEach( item => item.remove() );
+        
+        const {  renderList } = Handlers;
+        renderList(afterRemovedCompleted);
+    }
 }
 
 export default Handlers;
