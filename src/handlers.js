@@ -19,6 +19,7 @@ class Handlers {
     const afterAddNew = [...allTasks, newTask];
     afterAddNew.forEach((item, index) => { item.index = index; });
 
+    const { appendTask } = Handlers;
     appendTask(newTask);
 
     resetData(afterAddNew);
@@ -38,6 +39,7 @@ class Handlers {
       const existingLists = document.querySelectorAll('.task-item');
       existingLists.forEach((item) => item.remove());
 
+      const { renderList } = Handlers;
       renderList(allTasks);
     }
   }
@@ -101,6 +103,7 @@ class Handlers {
     const existingLists = document.querySelectorAll('.task-item');
     existingLists.forEach((item) => item.remove());
 
+    const { renderList } = Handlers;
     renderList(afterRemovedCompleted);
   }
 
@@ -118,7 +121,7 @@ class Handlers {
 
     if (e.target.className === 'cancel') {
       e.target.parentElement.parentElement
-      .textContent = e.target.getAttribute('data-initialtext');
+        .textContent = e.target.getAttribute('data-initialtext');
     }
 
     if (e.target.className === 'update') {
@@ -139,5 +142,4 @@ class Handlers {
   }
 }
 
-let { appendTask, renderList } = Handlers;
 export default Handlers;

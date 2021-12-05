@@ -1,14 +1,13 @@
 class UI {
-
-static get appHeader() {
+  static get appHeader() {
     return `
     <li class="appHeader">
         <h1>Today's To Do</h1>
         <span>&#8634</span>
     </li>`;
-}
+  }
 
-static get input() {
+  static get input() {
     return `
     <li>
         <input type="text" id="task-description" name="description" placeholder="Add to your list...">
@@ -16,11 +15,11 @@ static get input() {
         <span class="save-task">&crarr;</span>
     </li>
     `;
-} 
+  }
 
-static todoList(tasks) {
-    return  tasks
-    .map((task, index) => `
+  static todoList(tasks) {
+    return tasks
+      .map((task, index) => `
       <li class="task-item" title="Double click description to edit"> 
           <p>
               <span>
@@ -37,18 +36,16 @@ static todoList(tasks) {
           </p>
       </li>
   `);
-}
+  }
 
-static get footer() {
+  static get footer() {
     return `<li id="clear-all">
         <div>
             Clear all completed
         </div>
     </li>
     `;
-}
-
-
+  }
 }
 
 export default UI;

@@ -1,5 +1,4 @@
 class Data {
-
   static create(description, index, completed) {
     return { description, index, completed };
   }
@@ -16,9 +15,8 @@ class Data {
   }
 
   static resetData(data) {
-    localStorage.setItem("mytodoTasks",  JSON.stringify(data));
+    localStorage.setItem('mytodoTasks', JSON.stringify(data));
   }
-
 }
 
 export default Data;

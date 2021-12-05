@@ -4,7 +4,9 @@ import Handlers from './handlers.js';
 import UI from './ui.js';
 
 const { allTasks: tasks } = Data;
-const { appHeader, input, todoList, footer} = UI;
+const {
+  appHeader, input, todoList, footer,
+} = UI;
 const {
   handleCheckBoxChange,
   handleAddTask,
