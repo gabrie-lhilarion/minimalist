@@ -6,7 +6,7 @@ class Handlers {
       const { updateData } = Data;
       const status = e.target.checked;
       const index = e.target.getAttribute('data-index');
-      console.log(index)
+
       updateData(status, index);
     }
   }
@@ -14,17 +14,14 @@ class Handlers {
   static handleAddTask(e, completed) {
     const { allTasks, create, resetData } = Data;
     const currentIndex = document.querySelectorAll('.task-item').length;
-   
-    const description = e.target.previousElementSibling.value;
-    if (description.length < 3) return
-    const newTask = create(description, currentIndex, completed);
-   
-    const afterAddNew = [...allTasks, newTask];
-    console.log(currentIndex);
-    console.log(newTask);
-    console.log(afterAddNew);
 
-    //afterAddNew.forEach((item, index) => { item.index = index; });
+    const description = e.target.previousElementSibling.value;
+    if (description.length < 3) return;
+    const newTask = create(description, currentIndex, completed);
+
+    const afterAddNew = [...allTasks, newTask];
+
+    // afterAddNew.forEach((item, index) => { item.index = index; });
 
     const { appendTask } = Handlers;
     appendTask(newTask);
