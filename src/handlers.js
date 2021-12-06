@@ -58,7 +58,7 @@ class Handlers {
             </span>
         </p>
         <p>
-            <i  data-index="${task.index - 1}" class="remove-item">&times</i>
+            <i  data-index="${task.index}" class="remove-item">&times</i>
             <span class="drag-around">&#8942</span>
         </p>
     </li>
