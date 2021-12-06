@@ -14,9 +14,10 @@ class Handlers {
   static handleAddTask(e, completed) {
     const { allTasks, create, resetData } = Data;
     const currentIndex = document.querySelectorAll('.task-item').length;
-    console.log(currentIndex)
     const description = e.target.previousElementSibling.value;
+    if (description.length < 3) return
     const newTask = create(description, currentIndex, completed);
+   
     const afterAddNew = [...allTasks, newTask];
     afterAddNew.forEach((item, index) => { item.index = index; });
 
