@@ -13,7 +13,7 @@ class Handlers {
 
   static handleAddTask(e, completed) {
     const { allTasks, create, resetData } = Data;
-    const currentIndex = document.querySelectorAll('.task-item').length;
+    const currentIndex = document.querySelectorAll('.task-item').length + 1;
 
     const description = e.target.previousElementSibling.value;
     if (description.length < 3) return;
@@ -34,7 +34,7 @@ class Handlers {
       const { allTasks, resetData } = Data;
 
       allTasks.splice(index, 1);
-      allTasks.forEach((item, index) => { item.index = index; });
+      allTasks.forEach((item, index) => { item.index = index + 1; });
 
       resetData(allTasks);
 
@@ -70,7 +70,7 @@ class Handlers {
 
   static renderList(list) {
     const clearAll = document.getElementById('clear-all');
-    list.forEach((item, index) => { item.index = index; });
+    list.forEach((item, index) => { item.index = index + 1; });
     const listItems = list.map((task, index) => `
         <li class="task-item" title="Double click description to edit"> 
             <p>
@@ -98,7 +98,7 @@ class Handlers {
     const { allTasks, resetData } = Data;
     const afterRemovedCompleted = allTasks.filter((task) => task.completed !== true);
 
-    afterRemovedCompleted.forEach((item, index) => { item.index = index; });
+    afterRemovedCompleted.forEach((item, index) => { item.index = index + 1 });
 
     resetData(afterRemovedCompleted);
 
