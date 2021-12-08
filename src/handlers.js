@@ -52,13 +52,13 @@ class Handlers {
         <p>
             <span>
                 <label for="task list"> 
-                <input class="status"  data-index="${task.index}" type="checkbox" />
+                <input class="status"  data-index="${task.index - 1}" type="checkbox" />
                 <span class="description">${task.description}  </span>
                 </label>
             </span>
         </p>
         <p>
-            <i  data-index="${task.index}" class="remove-item">&times</i>
+            <i  data-index="${task.index - 1}" class="remove-item">&times</i>
             <span class="drag-around">&#8942</span>
         </p>
     </li>
