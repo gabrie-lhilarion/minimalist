@@ -98,7 +98,7 @@ class Handlers {
     const { allTasks, resetData } = Data;
     const afterRemovedCompleted = allTasks.filter((task) => task.completed !== true);
 
-    afterRemovedCompleted.forEach((item, index) => { item.index = index + 1 });
+    afterRemovedCompleted.forEach((item, index) => { item.index = index + 1; });
 
     resetData(afterRemovedCompleted);
 
