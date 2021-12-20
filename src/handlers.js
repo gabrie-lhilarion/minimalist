@@ -142,6 +142,44 @@ class Handlers {
       }
     }
   }
+
+  static dragAndDrop(dragEvent) {
+     
+    if(dragEvent.target.className === "drag-around") {
+      console.log("dragable")
+      const draggedItem = dragEvent.target.parentElement.parentElement;
+      draggedItem.style.position = 'absolute';
+      draggedItem.style.zIndex = 1000;
+      draggedItem.style.backgroundColor = "bisque"
+
+      //document.body.append(draggedItem);
+
+      function dragPosition(pageX, pageY) {
+        draggedItem.style.left = pageX - draggedItem.offsetWidth / 2 + 'px';
+        draggedItem.style.top = pageY - draggedItem.offsetHeight / 2 + 'px';
+      }
+
+      function onMouseMove(event) {
+        console.log("moving...")
+        dragPosition(event.pageX, event.pageY);
+      }
+
+      draggedItem.addEventListener('mousemove', onMouseMove);
+
+      draggedItem.onmouseup = function() {
+        draggedItem.removeEventListener('mousemove', onMouseMove);
+        draggedItem.onmouseup = null;
+      };
+
+      draggedItem.ondragstart = function() {
+        return false;
+      };
+        
+
+    }
+    
+  }
+
 }
 
 export default Handlers;

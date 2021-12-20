@@ -22,6 +22,7 @@ const {
   removeTask,
   clearCompleted,
   handleUpdate,
+  dragAndDrop,
 } 
 = Handlers;
 
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   minimalist.addEventListener('change', (e) => handleCheckBoxChange(e));
   minimalist.addEventListener('click', (e) => removeTask(e));
   minimalist.addEventListener('click', (e) => handleUpdate(e));
+  minimalist.addEventListener('mousedown', (e) => dragAndDrop(e));
 
   const saveTaskButton = document.querySelector('.save-task');
   saveTaskButton.addEventListener('click', (e) => handleAddTask(e, false));
