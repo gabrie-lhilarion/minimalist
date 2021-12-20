@@ -114,7 +114,7 @@ class Handlers {
       const initialText = e.target.textContent;
       e.target.innerHTML = `
         <p>
-            <input type="text" placeholder="${initialText}"/> <br/>
+            <input type="text" value="${initialText}"/> <br/>
             <button class="update">Update</button>  
             <button  data-initialtext="${initialText}" class="cancel">Cancel</button>
         </p>

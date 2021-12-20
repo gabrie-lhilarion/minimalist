@@ -3,17 +3,27 @@ import Data from './data.js';
 import Handlers from './handlers.js';
 import UI from './ui.js';
 
-const { allTasks: tasks } = Data;
+const { 
+  allTasks: tasks 
+} 
+= Data;
+
 const {
-  appHeader, input, todoList, footer,
-} = UI;
+  appHeader, 
+  input, 
+  todoList, 
+  footer,
+} 
+= UI;
+
 const {
   handleCheckBoxChange,
   handleAddTask,
   removeTask,
   clearCompleted,
   handleUpdate,
-} = Handlers;
+} 
+= Handlers;
 
 const minimalist = document.getElementById('minimalist');
 
